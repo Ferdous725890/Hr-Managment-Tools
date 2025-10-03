@@ -1,38 +1,33 @@
-// pages/showcase.tsx
 "use client";
-import CodeBlock from "@/components/CodeBlock";
 
-const navbarCode = `
-<header className="flex justify-between items-center px-6 py-4 bg-white shadow relative">
-  <h1 className="text-2xl font-bold text-purple-700">
-    {user?.name || "Mahabub Alam"}
-  </h1>
+import { Button } from "@/lib/button";
+import Link from "next/link";
 
-  <nav className="hidden md:flex space-x-6 text-gray-600 font-medium">
-    <a href="#" className="hover:text-purple-900">Home</a>
-    <a href="#" className="hover:text-purple-900">About</a>
-    <a href="#" className="hover:text-purple-700">Services</a>
-    <a href="#" className="hover:text-purple-700">Process</a>
-    <a href="#" className="hover:text-purple-700">Portfolio</a>
-    <Link href="/blog" className="hover:text-purple-700">Blog</Link>
-  </nav>
-</header>
-`;
-
-export default function NavbarPage() {
+const Navbar = () => {
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <h1 className="text-3xl font-bold mb-6">🧑‍💻 Navbar Code Example</h1>
+    <nav className="fixed top-6 inset-x-4 h-16 max-w-screen-xl mx-auto rounded-full bg-background border dark:border-slate-700/70 z-30">
+      <div className="flex h-full items-center justify-between px-6 md:px-8">
+        {/* Logo with consistent padding */}
+        <Link href="/" className="flex-shrink-0 ">
+          Home
+        </Link>
 
-      {/* Optional: Screenshot of the Navbar */}
-      <img
-        src="/navbar-preview.png"
-        alt="Navbar Preview"
-        className="rounded-xl shadow-md mb-6"
-      />
+        {/* Desktop Menu with consistent horizontal spacing */}
 
-      {/* Code block */}
-      <CodeBlock code={navbarCode} />
-    </div>
+        {/* Actions and Mobile Menu */}
+        <div className="flex items-center gap-4 md:gap-6">
+          <Button className="rounded-full px-5 py-2 text-sm md:text-base">
+            <Link href="/login" className="block w-full text-center">
+              Login
+            </Link>
+          </Button>
+
+          {/* Mobile Menu */}
+          <div className="md:hidden"></div>
+        </div>
+      </div>
+    </nav>
   );
-}
+};
+
+export default Navbar;
